@@ -303,7 +303,7 @@ interface IFormInput {
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const API_KEY = 'AIzaSyAToz-dpaERfMToBW6Jzt2u1aINvP1v-XQ';
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? '';
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -320,9 +320,11 @@ function App() {
     formState: { errors, isValid },
   } = useForm<IFormInput>({ mode: 'onChange' });
 
+const BASE_URL = process.env.REACT_APP_API_URL ?? 'http://localhost:8000';
+
   const sendEmail = async (data: IFormInput) => {
     try {
-      const response = await fetch('http://18.211.224.15:8000/api/send-email/', {
+      const response = await fetch(`${BASE_URL}/api/send-email/`, {
         method: 'POST',
         body: JSON.stringify({
           subject: 'Attention: Potential Lead',
