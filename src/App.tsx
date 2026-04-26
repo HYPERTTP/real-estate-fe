@@ -1,6 +1,3 @@
-
-
-
 import './App.css';
 import photo from './photoReal.jpeg';
 
@@ -24,7 +21,6 @@ import {
   faChartLine,
   faShieldAlt,
   faStar,
-  faPhone,
 } from '@fortawesome/free-solid-svg-icons';
 
 // ─── Animations ───────────────────────────────────────────────────────────────
@@ -61,48 +57,6 @@ const HeroSection = styled.main`
       rgba(10, 16, 30, 0.55) 0%,
       rgba(10, 16, 30, 0.75) 100%
     );
-  }
-`;
-
-const Navbar = styled.nav`
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 2.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-
-  @media (max-width: 600px) {
-    padding: 1rem 1.25rem;
-  }
-`;
-
-const NavLogo = styled.span`
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: 0.04em;
-
-  span {
-    color: #c9a84c;
-  }
-`;
-
-const NavPhone = styled.a`
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  letter-spacing: 0.02em;
-  transition: color 0.2s;
-
-  &:hover {
-    color: #c9a84c;
   }
 `;
 
@@ -349,11 +303,7 @@ interface IFormInput {
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? '';
-
-const BASE_URL = process.env.REACT_APP_API_URL ?? 'http://localhost:8000';
-
-// const response = await fetch(`${BASE_URL}/api/send-email/`, {
+const API_KEY = 'AIzaSyAToz-dpaERfMToBW6Jzt2u1aINvP1v-XQ';
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -372,7 +322,7 @@ function App() {
 
   const sendEmail = async (data: IFormInput) => {
     try {
-      const response = await fetch(`${BASE_URL}/api/send-email/`, {
+      const response = await fetch('http://18.211.224.15:8000/api/send-email/', {
         method: 'POST',
         body: JSON.stringify({
           subject: 'Attention: Potential Lead',
@@ -429,6 +379,7 @@ function App() {
   if (!showMap) {
     return (
       <HeroSection aria-label="Home valuation hero">
+
 
         <HeroContent>
           <EyebrowText>Free Home Valuation — GTA</EyebrowText>

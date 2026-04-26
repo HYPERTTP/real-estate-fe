@@ -1,19 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { createRoot } from 'react-dom/client';
-import {
-  APIProvider,
-  ControlPosition,
-  MapControl,
-  AdvancedMarker,
-  Map,
-  useMap,
-  useMapsLibrary,
-  useAdvancedMarkerRef,
-  AdvancedMarkerRef
-} from '@vis.gl/react-google-maps';
+import { useEffect, useRef, useState } from 'react';
+import { useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
 
-const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? '';
-
+// ─── MapHandler ───────────────────────────────────────────────────────────────
 
 interface MapHandlerProps {
   place: google.maps.places.PlaceResult | null;
@@ -35,6 +23,8 @@ export const MapHandler = ({ place, marker }: MapHandlerProps) => {
   return null;
 };
 
+// ─── PlaceAutocomplete ────────────────────────────────────────────────────────
+
 interface PlaceAutocompleteProps {
   onPlaceSelect: (place: google.maps.places.PlaceResult | null) => void;
 }
@@ -50,8 +40,7 @@ export const PlaceAutocomplete = ({ onPlaceSelect }: PlaceAutocompleteProps) => 
 
     const options = {
       fields: ['geometry', 'name', 'formatted_address'],
-      componentRestrictions: { country: "ca" },
-
+      componentRestrictions: { country: 'ca' },
     };
 
     setPlaceAutocomplete(new places.Autocomplete(inputRef.current, options));
@@ -71,8 +60,3 @@ export const PlaceAutocomplete = ({ onPlaceSelect }: PlaceAutocompleteProps) => 
     </div>
   );
 };
-
-
-
-
-
